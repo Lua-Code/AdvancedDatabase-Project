@@ -1,6 +1,6 @@
 ﻿namespace Booking_app
 {
-    partial class Form1
+    partial class Homepage
     {
         /// <summary>
         /// Required designer variable.
@@ -99,7 +99,7 @@
             this.Name = "Form1";
             this.Text = "Home Page";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.Homepage_Load);
             this.ResumeLayout(false);
 
         }

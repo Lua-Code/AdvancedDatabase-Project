@@ -7,7 +7,7 @@ public static class MongoDBClient
 
     static MongoDBClient()
     {
-        _client = new MongoClient("mongodb://localhost:27017");
+        _client = new MongoClient("mongodb://localhost:27017/");
         _db = _client.GetDatabase("ClubDB");
     }
 
