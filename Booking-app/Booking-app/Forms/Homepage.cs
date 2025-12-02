@@ -11,12 +11,14 @@ using System.Xml.Linq;
 
 namespace Booking_app
 {
-    public partial class Form1 : Form
+    public partial class Homepage : Form
     {
-        public Form1()
+        public Homepage()
         {
             InitializeComponent();
         }
+
+        FacilityService facilityService = new FacilityService();
 
         private Panel CreateCard(string name, Image img = null)
         {
@@ -68,7 +70,7 @@ namespace Booking_app
             MessageBox.Show($"You clicked on {name}");
         }
 
-        private void addFacilitySection(string title, List<string> items)
+        private void addFacilitySection(string title, List<Facility> facilities)
         {
             Label label = new Label
             {
@@ -90,35 +92,26 @@ namespace Booking_app
                 Padding = new Padding(10)
             };
 
-            foreach (var item in items)
+            foreach (var facility in facilities)
             {
-                flowLayoutPanel.Controls.Add(CreateCard(item));
+                flowLayoutPanel.Controls.Add(CreateCard(facility.name));
             }
             mainFlow.Controls.Add(label);
             mainFlow.Controls.Add(flowLayoutPanel);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Homepage_Load(object sender, EventArgs e)
         {
-            addFacilitySection("Football Courts:", new List<string>
-                {
-                    "Court 1", "Court 2", "Court 3","Court 4", "Court 5", "Court 6", "Court 7"
-                });
+            Console.WriteLine("meow");
+            var types = facilityService.GetDistinctTypes();
+            Console.WriteLine($"Found {types.Count} types");
 
-            addFacilitySection("Tennis Courts:", new List<string>
-                {
-                    "Court A", "Court B"
-                });
-
-            addFacilitySection("Saunas:", new List<string>
-                {
-                    "Sauna A", "Sauna B", "Sauna C"
-                });
-
-            addFacilitySection("Squash Courts:", new List<string>
-                {
-                    "Court A", "Court B", "Court C", "Court D"
-                });
+            foreach (var type in types)
+            {
+                var facilities = facilityService.GetByType(type);
+                addFacilitySection(type + ":", facilities);
+            }
         }
+
     }
 }

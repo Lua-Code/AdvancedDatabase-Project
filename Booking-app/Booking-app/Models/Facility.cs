@@ -5,10 +5,10 @@ public class Facility
 {
     [BsonId]
     public ObjectId Id { get; set; }
-    public string Name { get; set; }
-    public string Type { get; set; }
-    public string Location { get; set; }
-    public string Availability { get; set; }
-    public int Capacity { get; set; }
-    public decimal HourlyRate { get; set; }
+    public string name { get; set; }
+    public string type { get; set; }
+    public string location { get; set; }
+    public string availability { get; set; }
+    public int capacity { get; set; }
+    public decimal hourlyRate { get; set; }
 }
