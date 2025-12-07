@@ -6,12 +6,12 @@ public class Booking
 {
     [BsonId]
     public ObjectId Id { get; set; }
-    public ObjectId MemberId { get; set; }
-    public ObjectId FacilityId { get; set; }
-    public ObjectId StaffId { get; set; }
-    public DateTime BookingDate { get; set; }
-    public int StartTime { get; set; }
-    public int EndTime { get; set; }
+    public ObjectId membed_id { get; set; }
+    public ObjectId facility_id { get; set; }
+    public ObjectId staff_id { get; set; }
+    public DateTime bookingDate { get; set; }
+    public int startTime { get; set; }
+    public int endTime { get; set; }
     public string Status { get; set; }
-    public DateTime CreationDate { get; set; }
+    public DateTime creationDate { get; set; }
 }

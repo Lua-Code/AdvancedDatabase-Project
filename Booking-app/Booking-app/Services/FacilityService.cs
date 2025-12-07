@@ -25,6 +25,11 @@ public class FacilityService
         return _facilityCollection.Find(f => f.type == type).ToList();
     }
 
+    public List<Facility> GetByName(string name)
+    {
+        return _facilityCollection.Find(f => f.name == name).ToList();
+    }
+
     public List<string> GetDistinctTypes()
     {
         return _facilityCollection.Distinct<string>("type", Builders<Facility>.Filter.Empty).ToList();

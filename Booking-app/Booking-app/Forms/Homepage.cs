@@ -8,19 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using MongoDB.Bson;
 
 namespace Booking_app
 {
     public partial class Homepage : Form
     {
+
+        FacilityService facilityService;
         public Homepage()
         {
             InitializeComponent();
+            facilityService = new FacilityService();
         }
 
-        FacilityService facilityService = new FacilityService();
 
-        private Panel CreateCard(string name, Image img = null)
+
+        private Panel CreateCard(string name,ObjectId facility_id, Image img = null)
         {
             Panel card = new Panel
             {
@@ -29,7 +33,8 @@ namespace Booking_app
                 BackColor = Color.White,
                 BorderStyle = BorderStyle.FixedSingle,
                 Margin = new Padding(10),
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                Tag = facility_id
             };
 
             PictureBox pb = new PictureBox
@@ -94,7 +99,7 @@ namespace Booking_app
 
             foreach (var facility in facilities)
             {
-                flowLayoutPanel.Controls.Add(CreateCard(facility.name));
+                flowLayoutPanel.Controls.Add(CreateCard(facility.name,facility.Id));
             }
             mainFlow.Controls.Add(label);
             mainFlow.Controls.Add(flowLayoutPanel);
