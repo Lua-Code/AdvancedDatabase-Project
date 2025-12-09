@@ -150,10 +150,20 @@
     <Compile Include="Forms\Homepage.Designer.cs">
       <DependentUpon>Homepage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MyBookingspage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MyBookingspage.Designer.cs">
+      <DependentUpon>MyBookingspage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Facility.cs" />
     <Compile Include="Models\Member.cs" />
     <Compile Include="Models\Payment.cs" />
+    <Compile Include="Services\AuthService.cs" />
+    <Compile Include="Services\MemberService.cs" />
+    <Compile Include="Services\Session.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\UsageLog.cs" />
     <Compile Include="Program.cs" />
@@ -161,6 +171,7 @@
     <Compile Include="Services\BookingService.cs" />
     <Compile Include="Services\FacilityService.cs" />
     <Compile Include="Services\MongoDBClient.cs" />
+    <Compile Include="Services\StaffService.cs" />
     <EmbeddedResource Include="Forms\Facilitypage.resx">
       <DependentUpon>Facilitypage.cs</DependentUpon>
     </EmbeddedResource>

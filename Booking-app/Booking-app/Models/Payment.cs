@@ -6,11 +6,11 @@ public class Payment
 {
     [BsonId]
     public ObjectId Id { get; set; }
-    public ObjectId MemberId { get; set; }
-    public decimal Amount { get; set; }
-    public DateTime PaymentDate { get; set; }
-    public string PaymentMethod { get; set; }
-    public string PaymentType { get; set; }
-    public ObjectId? BookingId { get; set; }
-    public string Status { get; set; }
+    public ObjectId member_id { get; set; }
+    public decimal amount { get; set; }
+    public DateTime paymentDate { get; set; }
+    public string paymentMethod { get; set; }
+    public string paymentType { get; set; }
+    public ObjectId booking_id { get; set; }
+    public string status { get; set; }
 }

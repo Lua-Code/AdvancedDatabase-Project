@@ -5,10 +5,10 @@ public class UsageLog
 {
     [BsonId]
     public ObjectId Id { get; set; }
-    public ObjectId BookingId { get; set; }
-    public ObjectId MemberId { get; set; }
-    public ObjectId FacilityId { get; set; }
-    public int StartTime { get; set; }
-    public int EndTime { get; set; }
-    public int Duration { get; set; }
+    public ObjectId booking_id { get; set; }
+    public ObjectId member_id { get; set; }
+    public ObjectId facility_id { get; set; }
+    public int startTime { get; set; }
+    public int endTime { get; set; }
+    public int duration { get; set; }
 }

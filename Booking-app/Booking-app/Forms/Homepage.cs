@@ -16,10 +16,24 @@ namespace Booking_app
     {
 
         FacilityService facilityService;
+        MemberService memberService = new MemberService();
         public Homepage()
         {
             InitializeComponent();
             facilityService = new FacilityService();
+            memberService = new MemberService();
+
+
+            myBookingsButton.Click += (s, e) =>
+            {
+                if(Session.IsStaff)
+                {
+                    MessageBox.Show("Staff members do not have bookings. :(((");
+                    return;
+                }
+                Form myBookingsForm = new MyBookingspage();
+                myBookingsForm.Show();
+            };
         }
 
 
@@ -117,6 +131,8 @@ namespace Booking_app
                 addFacilitySection(type + ":", facilities);
             }
         }
+
+
 
     }
 }

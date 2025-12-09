@@ -6,7 +6,7 @@ public class Booking
 {
     [BsonId]
     public ObjectId Id { get; set; }
-    public ObjectId membed_id { get; set; }
+    public ObjectId member_id { get; set; }
     public ObjectId facility_id { get; set; }
     public ObjectId staff_id { get; set; }
     public DateTime bookingDate { get; set; }

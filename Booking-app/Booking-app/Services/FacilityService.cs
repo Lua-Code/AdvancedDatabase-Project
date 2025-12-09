@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 public class FacilityService
@@ -13,6 +14,11 @@ public class FacilityService
     {
         var db = MongoDBClient.GetDatabase();
         _facilityCollection = db.GetCollection<Facility>("Facility");
+    }
+
+    public Facility GetById(ObjectId id)
+    {
+        return _facilityCollection.Find(f => f.Id == id).FirstOrDefault();
     }
 
     public List<Facility> GetAllFacilities()

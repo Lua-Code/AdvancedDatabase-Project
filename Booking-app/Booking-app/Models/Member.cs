@@ -2,15 +2,15 @@
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 
-public class Member
+public class Member : IUser
 {
     [BsonId]
     public ObjectId Id { get; set; }
-    public string Name { get; set; }
-    public string Email { get; set; }
-    public string Password { get; set; }
-    public string Phone { get; set; }
-    public string MembershipLevel { get; set; }
-    public DateTime JoinDate { get; set; }
-    public string MembershipStatus { get; set; }
+    public string name { get; set; }
+    public string email { get; set; }
+    public string password { get; set; }
+    public string phone { get; set; }
+    public string membershipLevel { get; set; }
+    public DateTime joinDate { get; set; }
+    public string membershipStatus { get; set; }
 }

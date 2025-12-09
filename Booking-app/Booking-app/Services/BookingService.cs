@@ -17,10 +17,26 @@ public class BookingService
 
     }
 
+    public List<Booking> GetBookingsByMemberId(ObjectId memberId)
+    {
+        var filter = Builders<Booking>.Filter.Eq(b => b.member_id, memberId);
+        var sort = Builders<Booking>.Sort.Ascending(b => b.bookingDate);
+        return _bookingCollection.Find(filter).Sort(sort).ToList();
+    }
+
+    public bool UnbookBooking(string bookingId)
+    {
+        var filter = Builders<Booking>.Filter.Eq(b => b.Id, new ObjectId(bookingId));
+        var update = Builders<Booking>.Update.Set(b => b.Status, "Cancelled");
+        var result = _bookingCollection.UpdateOne(filter, update);
+
+        return result.MatchedCount > 0;
+    }
+
+
     public List<Booking> getBookingsByFacilityIdAndDate(ObjectId facilityId,DateTime date)
     {
         var db = MongoDBClient.GetDatabase();
-        var collection = db.GetCollection<Booking>("Booking");
 
         DateTime dayStart = date.Date;                 
         DateTime dayEnd = dayStart.AddDays(1).AddTicks(-1); 
@@ -31,7 +47,7 @@ public class BookingService
             Builders<Booking>.Filter.Lte(b => b.bookingDate, dayEnd)
         );
 
-        return collection.Find(filter).ToList();
+        return _bookingCollection.Find(filter).ToList();
     }
 
     public List<(int Start, int End)> GetAvailableSlots(ObjectId facilityId, DateTime date, int openingHour = 8, int closingHour = 23)
