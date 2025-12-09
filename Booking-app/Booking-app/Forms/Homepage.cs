@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,12 +17,14 @@ namespace Booking_app
     {
 
         FacilityService facilityService;
-        MemberService memberService = new MemberService();
+        MemberService memberService;
+        AuthService authService;
         public Homepage()
         {
             InitializeComponent();
             facilityService = new FacilityService();
             memberService = new MemberService();
+            authService = new AuthService();
 
 
             myBookingsButton.Click += (s, e) =>
@@ -34,12 +37,36 @@ namespace Booking_app
                 Form myBookingsForm = new MyBookingspage();
                 myBookingsForm.Show();
             };
+
+            logoutButton.Click += (s, e) =>
+            {
+                authService.Logout();
+                this.Close();
+            };
         }
 
 
 
-        private Panel CreateCard(string name,ObjectId facility_id, Image img = null)
+        private Panel CreateCard(string name, ObjectId facility_id, string type)
         {
+            string imagePath;
+            if (type == "Room") {
+                string typeOfRoom = name.Split(' ')[0]; 
+                Console.WriteLine($"Type of room: {typeOfRoom}");
+                imagePath = Path.Combine(Application.StartupPath, "Assets", typeOfRoom + ".jpg");
+            }
+            else if (type == "Football")
+            {
+                imagePath = Path.Combine(Application.StartupPath, "Assets", "Football.webp");
+            }
+            else
+            {
+                imagePath = Path.Combine(Application.StartupPath, "Assets", type + ".jpg");
+
+            }
+            Image img = File.Exists(imagePath) ? Image.FromFile(imagePath) : null;
+            Console.WriteLine($"Loading image for {name} from {imagePath}: {(img != null ? "Found" : "Not Found")}");
+
             Panel card = new Panel
             {
                 Width = 180,
@@ -55,7 +82,7 @@ namespace Booking_app
             {
                 Dock = DockStyle.Top,
                 Height = 100,
-                SizeMode = PictureBoxSizeMode.Zoom,
+                SizeMode = PictureBoxSizeMode.StretchImage,
                 Image = img
             };
 
@@ -83,6 +110,7 @@ namespace Booking_app
 
             return card;
         }
+
 
         private void OnCardClick(string name)
         {
@@ -113,7 +141,7 @@ namespace Booking_app
 
             foreach (var facility in facilities)
             {
-                flowLayoutPanel.Controls.Add(CreateCard(facility.name,facility.Id));
+                flowLayoutPanel.Controls.Add(CreateCard(facility.name,facility.Id,facility.type));
             }
             mainFlow.Controls.Add(label);
             mainFlow.Controls.Add(flowLayoutPanel);

@@ -19,8 +19,6 @@ namespace Booking_app
             _bookingService = new BookingService();
             _facilityService = new FacilityService();
             _staffService = new StaffService();
-
-            this.Load += MyBookingspage_Load;
         }
 
         private void MyBookingspage_Load(object sender, EventArgs e)
@@ -81,13 +79,14 @@ namespace Booking_app
 
                 foreach (DataGridViewRow row in DGTable.Rows)
                 {
-                    if (row.IsNewRow) continue; // skip the empty row
+                    if (row.IsNewRow) continue; 
 
                     string status = row.Cells["Status"].Value?.ToString();
                     Console.WriteLine($"[{status}]");
 
                     if (!string.IsNullOrEmpty(status) && status.Trim().Equals("Cancelled", StringComparison.OrdinalIgnoreCase))
                     {
+                        Console.WriteLine("Disabling button for cancelled booking");
                         row.Cells["UnbookButton"].Value = "";
                         row.Cells["UnbookButton"].ReadOnly = true;
                         row.Cells["UnbookButton"].Style.ForeColor = Color.Gray;
