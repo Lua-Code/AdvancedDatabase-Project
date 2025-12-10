@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using MongoDB.Bson;
+using System.Drawing;
 
 namespace Booking_app
 {
     public partial class Facilitypage : Form
     {
         private BookingService bookingService;
+        private FacilityService facilityService;
         private List<Booking> selectedBookings = new List<Booking>();
 
         public ObjectId FacilityId { get; set; } 
@@ -18,20 +22,49 @@ namespace Booking_app
             InitializeComponent();
             FacilityId = facilityId;
             bookingService = new BookingService();
+            facilityService = new FacilityService();
 
             this.Load += Facilitypage_Load;
-            dateTimePicker1.ValueChanged += DateTimePicker1_ValueChanged;
-            listBox1.SelectionMode = SelectionMode.MultiSimple;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
-            bookButton.Click += reserve_Click;
-            backButtn.Click += backButtn_Click;
+
         }
 
         private void Facilitypage_Load(object sender, EventArgs e)
         {
+            Console.WriteLine("Loading Faiclity");
             dateTimePicker1.Value = dateTimePicker1.Value.Date;
             LoadBookingsForDate(dateTimePicker1.Value.Date);
+
+            var facility = facilityService.GetById(FacilityId);
+            courtName.Text = facility.name.ToString();
+            locationLabel.Text = "Location: " + facility.location.ToString();
+            typeLabel.Text = "Type: " + facility.type.ToString();
+            capacityLabel.Text = "Capacity: " + facility.capacity.ToString();
+            priceLabel.Text = "Price: "+ facilityService.GetPriceByMembershipLevel(Session.GetUserId,FacilityId);
+
+            string imagePath;
+            if (facility.type == "Room")
+            {
+                string typeOfRoom = facility.name.Split(' ')[0];
+                Console.WriteLine($"Type of room: {typeOfRoom}");
+                imagePath = Path.Combine(Application.StartupPath, "Assets", typeOfRoom + ".jpg");
+            }
+            else if (facility.type == "Football")
+            {
+                imagePath = Path.Combine(Application.StartupPath, "Assets", "Football.webp");
+            }
+            else
+            {
+                imagePath = Path.Combine(Application.StartupPath, "Assets", facility.type + ".jpg");
+
+            }
+            Image img = File.Exists(imagePath) ? Image.FromFile(imagePath) : null;
+
+            pictureBox1.Image = img;
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+
         }
+
 
         private void DateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -67,6 +100,12 @@ namespace Booking_app
                     selectedSlots.Add(availableSlots[index]);
                 }
             }
+
+            var hourlyRate = facilityService.GetPriceByMembershipLevel(Session.GetUserId, FacilityId);
+
+            priceLabel.Text = "Price: " + hourlyRate* selectedSlots.Count;
+
+
         }
 
 
@@ -91,5 +130,15 @@ namespace Booking_app
         private void label1_Click_1(object sender, EventArgs e) { }
         private void pictureBox1_Click(object sender, EventArgs e) { }
         private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e) { }
+
+        private void locationLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void typeLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

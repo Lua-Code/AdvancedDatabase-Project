@@ -26,7 +26,6 @@ namespace Booking_app
             memberService = new MemberService();
             authService = new AuthService();
 
-
             myBookingsButton.Click += (s, e) =>
             {
                 if(Session.IsStaff)
@@ -43,6 +42,8 @@ namespace Booking_app
                 authService.Logout();
                 this.Close();
             };
+
+
         }
 
 
@@ -97,9 +98,9 @@ namespace Booking_app
             card.Controls.Add(label);
             card.Controls.Add(pb);
 
-            card.Click += (s, e) => OnCardClick(name);
-            pb.Click += (s, e) => OnCardClick(name);
-            label.Click += (s, e) => OnCardClick(name);
+            card.Click += (s, e) => OnCardClick(facility_id);
+            pb.Click += (s, e) => OnCardClick(facility_id);
+            label.Click += (s, e) => OnCardClick(facility_id);
 
             card.MouseEnter += (s, e) => card.BackColor = Color.FromKnownColor(KnownColor.ControlDark);
             pb.MouseEnter += (s, e) => card.BackColor = Color.FromKnownColor(KnownColor.ControlDark);
@@ -112,9 +113,10 @@ namespace Booking_app
         }
 
 
-        private void OnCardClick(string name)
+        private void OnCardClick(ObjectId facility_id)
         {
-            MessageBox.Show($"You clicked on {name}");
+            Facilitypage facilityPage = new Facilitypage(facility_id);
+            facilityPage.Show();
         }
 
         private void addFacilitySection(string title, List<Facility> facilities)

@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Booking_app
 {
@@ -58,9 +59,9 @@ namespace Booking_app
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(10, 75);
+            this.pictureBox1.Location = new System.Drawing.Point(29, 75);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(507, 267);
+            this.pictureBox1.Size = new System.Drawing.Size(488, 267);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
@@ -76,25 +77,27 @@ namespace Booking_app
             // locationLabel
             // 
             this.locationLabel.AutoSize = true;
-            this.locationLabel.Location = new System.Drawing.Point(58, 404);
+            this.locationLabel.Location = new System.Drawing.Point(26, 385);
             this.locationLabel.Name = "locationLabel";
             this.locationLabel.Size = new System.Drawing.Size(48, 13);
             this.locationLabel.TabIndex = 3;
             this.locationLabel.Text = "Location";
+            this.locationLabel.Click += new System.EventHandler(this.locationLabel_Click);
             // 
             // typeLabel
             // 
             this.typeLabel.AutoSize = true;
-            this.typeLabel.Location = new System.Drawing.Point(58, 447);
+            this.typeLabel.Location = new System.Drawing.Point(26, 422);
             this.typeLabel.Name = "typeLabel";
             this.typeLabel.Size = new System.Drawing.Size(31, 13);
             this.typeLabel.TabIndex = 4;
             this.typeLabel.Text = "Type";
+            this.typeLabel.Click += new System.EventHandler(this.typeLabel_Click);
             // 
             // capacityLabel
             // 
             this.capacityLabel.AutoSize = true;
-            this.capacityLabel.Location = new System.Drawing.Point(58, 495);
+            this.capacityLabel.Location = new System.Drawing.Point(26, 456);
             this.capacityLabel.Name = "capacityLabel";
             this.capacityLabel.Size = new System.Drawing.Size(48, 13);
             this.capacityLabel.TabIndex = 5;
@@ -123,6 +126,7 @@ namespace Booking_app
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(538, 114);
             this.listBox1.Name = "listBox1";
+            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBox1.Size = new System.Drawing.Size(514, 212);
             this.listBox1.TabIndex = 8;
             // 
@@ -180,5 +184,7 @@ namespace Booking_app
         private ListBox listBox1;
         private Label datelabel;
         private DateTimePicker dateTimePicker1;
+
+        
     }
 }
