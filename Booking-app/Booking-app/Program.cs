@@ -15,14 +15,10 @@ namespace Booking_app
         [STAThread]
         static void Main()
         {
-            //Simulate a login
-            AuthService authService = new AuthService();
-            IUser user = authService.Login("alice.johnson@gmail.com", "alice123");
-            Session.Login(user);
             //Test Program
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Homepage());
+            Application.Run(new Loginpage());
             //Application.Run(new Facilitypage(mockFacility));
             //Application.Run(new MyBookingspage(new ObjectId("692ef10a0efaf54d2d348b3c")));
         }

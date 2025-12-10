@@ -120,6 +120,7 @@ namespace Booking_app
         {
             Facilitypage facilityPage = new Facilitypage(facility_id);
             facilityPage.Show();
+            this.Hide();
         }
 
         private void addFacilitySection(string title, List<Facility> facilities)

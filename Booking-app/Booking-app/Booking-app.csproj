@@ -150,6 +150,30 @@
     <Compile Include="Forms\Homepage.Designer.cs">
       <DependentUpon>Homepage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Loginpage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Loginpage.Designer.cs">
+      <DependentUpon>Loginpage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Editpage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Editpage.Designer.cs">
+      <DependentUpon>Editpage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Profilepage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Profilepage.Designer.cs">
+      <DependentUpon>Profilepage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Signuppage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Signuppage.Designer.cs">
+      <DependentUpon>Signuppage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MyBookingspage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +205,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Homepage.resx">
       <DependentUpon>Homepage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Loginpage.resx">
+      <DependentUpon>Loginpage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Editpage.resx">
+      <DependentUpon>Editpage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Profilepage.resx">
+      <DependentUpon>Profilepage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Signuppage.resx">
+      <DependentUpon>Signuppage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

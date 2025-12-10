@@ -28,6 +28,7 @@ namespace Booking_app
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             dateTimePicker1.ValueChanged += DateTimePicker1_ValueChanged;
             bookButton.Click += reserve_Click;
+            backButtn.Click += backButtn_Click;
 
             if(Session.IsStaff) { bookButton.Visible = false; }
 

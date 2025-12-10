@@ -22,6 +22,7 @@ public class AuthService
         var member = _memberService.GetByEmailAndPassword(email, password);
         if (member != null)
         {
+            Session.Login(member);
             return member;
         }
 
@@ -29,10 +30,17 @@ public class AuthService
         var staff = _staffService.GetByEmailAndPassword(email,password);
         if (staff != null)
         {
+            Session.Login(member);
             return staff;
         }
 
         return null; //login failed :(
+    }
+
+    public bool Signup(Member member)
+    { 
+        return _memberService.AddMember(member);
+    
     }
 
     public void Logout()

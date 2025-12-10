@@ -86,7 +86,7 @@
             this.myBookingsButton.Text = "My Bookings";
             this.myBookingsButton.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // Homepage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -96,9 +96,8 @@
             this.Controls.Add(this.profileButton);
             this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.mainFlow);
-            this.Name = "Form1";
+            this.Name = "Homepage";
             this.Text = "Home Page";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Homepage_Load);
             this.ResumeLayout(false);
 

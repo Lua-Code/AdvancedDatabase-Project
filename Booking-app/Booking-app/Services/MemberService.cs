@@ -26,6 +26,24 @@ public class MemberService
         return _memberCollection.Find(m => m.email == email && m.password == password).FirstOrDefault();
     }
 
+    public Member GetByEmail(string email)
+    {
+        return _memberCollection.Find(m => m.email == email).FirstOrDefault();
+    }
+
+    public bool AddMember(Member member)
+    {
+        try
+        {
+            _memberCollection.InsertOne(member);
+
+            return true; // success
+        }
+        catch
+        {
+            return false; // failed
+        }
+    }
 
 
 
