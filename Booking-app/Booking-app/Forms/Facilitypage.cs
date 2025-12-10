@@ -26,6 +26,7 @@ namespace Booking_app
 
             this.Load += Facilitypage_Load;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+            dateTimePicker1.ValueChanged += DateTimePicker1_ValueChanged;
 
         }
 
@@ -70,7 +71,7 @@ namespace Booking_app
         {
             dateTimePicker1.Value = dateTimePicker1.Value.Date;
             LoadBookingsForDate(dateTimePicker1.Value.Date);
-            Debug.WriteLine($"Now Checking for date {dateTimePicker1.Value.Date}");
+            Console.WriteLine($"Now Checking for date {dateTimePicker1.Value.Date}");
         }
 
         private List<(int Start, int End)> availableSlots = new List<(int, int)>();
@@ -84,6 +85,13 @@ namespace Booking_app
             {
                 listBox1.Items.Add($"{slot.Start}:00-{slot.End}:00");
             }
+
+            Console.WriteLine("Available slots:");
+            foreach (var slot in availableSlots)
+            {
+                Console.WriteLine($"{slot.Start}:00 - {slot.End}:00");
+            }
+
         }
 
 

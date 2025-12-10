@@ -34,21 +34,20 @@ public class BookingService
     }
 
 
-    public List<Booking> getBookingsByFacilityIdAndDate(ObjectId facilityId,DateTime date)
+    public List<Booking> getBookingsByFacilityIdAndDate(ObjectId facilityId, DateTime date)
     {
-        var db = MongoDBClient.GetDatabase();
+        var dayStart = date.Date.ToUniversalTime();
+        var dayEnd = dayStart.AddDays(1);
 
-        DateTime dayStart = date.Date;                 
-        DateTime dayEnd = dayStart.AddDays(1).AddTicks(-1); 
-
-        var filter = Builders<Booking>.Filter.And(
-            Builders<Booking>.Filter.Eq(b => b.facility_id, facilityId),
-            Builders<Booking>.Filter.Gte(b => b.bookingDate, dayStart),
-            Builders<Booking>.Filter.Lte(b => b.bookingDate, dayEnd)
-        );
+        var filterBuilder = Builders<Booking>.Filter;
+        var filter = filterBuilder.Eq(b => b.facility_id, facilityId) &
+                     filterBuilder.Gte(b => b.bookingDate, dayStart) &
+                     filterBuilder.Lt(b => b.bookingDate, dayEnd);
 
         return _bookingCollection.Find(filter).ToList();
     }
+
+
 
     public List<(int Start, int End)> GetAvailableSlots(ObjectId facilityId, DateTime date, int openingHour = 8, int closingHour = 23)
     {

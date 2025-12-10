@@ -43,6 +43,11 @@ namespace Booking_app
                 this.Close();
             };
 
+            if(Session.IsStaff)
+            {
+                myBookingsButton.Visible = false;
+            }
+
 
         }
 
@@ -53,7 +58,6 @@ namespace Booking_app
             string imagePath;
             if (type == "Room") {
                 string typeOfRoom = name.Split(' ')[0]; 
-                Console.WriteLine($"Type of room: {typeOfRoom}");
                 imagePath = Path.Combine(Application.StartupPath, "Assets", typeOfRoom + ".jpg");
             }
             else if (type == "Football")
@@ -66,7 +70,6 @@ namespace Booking_app
 
             }
             Image img = File.Exists(imagePath) ? Image.FromFile(imagePath) : null;
-            Console.WriteLine($"Loading image for {name} from {imagePath}: {(img != null ? "Found" : "Not Found")}");
 
             Panel card = new Panel
             {
@@ -151,9 +154,7 @@ namespace Booking_app
 
         private void Homepage_Load(object sender, EventArgs e)
         {
-            Console.WriteLine("meow");
             var types = facilityService.GetDistinctTypes();
-            Console.WriteLine($"Found {types.Count} types");
 
             foreach (var type in types)
             {
