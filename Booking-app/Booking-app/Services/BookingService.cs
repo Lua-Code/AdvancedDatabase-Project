@@ -9,13 +9,77 @@ using MongoDB.Bson;
 public class BookingService
 {
     private readonly IMongoCollection<Booking> _bookingCollection;
+    private readonly StaffService _staffService;
 
     public BookingService()
     {
         var db = MongoDBClient.GetDatabase();
         _bookingCollection = db.GetCollection<Booking>("Booking");
+        _staffService = new StaffService();
 
     }
+
+    public bool CreateBookings(ObjectId memberId,ObjectId facilityId, List<(int Start, int End)> selectedSlots,DateTime bookingDate)
+    {
+        try
+        {
+            if (selectedSlots == null || selectedSlots.Count == 0)
+                return false;
+
+            selectedSlots.Sort((a, b) => a.Start.CompareTo(b.Start));
+
+            List<(int Start, int End)> mergedSlots = new List<(int Start, int End)>();
+            int currentStart = selectedSlots[0].Start;
+            int currentEnd = selectedSlots[0].End;
+
+            for (int i = 1; i < selectedSlots.Count; i++)
+            {
+                var slot = selectedSlots[i];
+
+                if (slot.Start == currentEnd)
+                {
+                    currentEnd = slot.End; 
+                }
+                else
+                {
+                    mergedSlots.Add((currentStart, currentEnd));
+                    currentStart = slot.Start;
+                    currentEnd = slot.End;
+                }
+            }
+
+
+            mergedSlots.Add((currentStart, currentEnd));
+
+            foreach (var bookingSlot in mergedSlots)
+            {
+                Staff availableStaff = _staffService.GetAvailableStaff(facilityId, bookingDate, bookingSlot.Start, bookingSlot.End);
+
+                Booking booking = new Booking
+                {
+                    member_id = memberId,
+                    facility_id = facilityId,
+                    staff_id = availableStaff.Id,
+                    bookingDate = bookingDate,
+                    startTime = bookingSlot.Start,
+                    endTime = bookingSlot.End,
+                    Status = "Pending",
+                    creationDate = DateTime.UtcNow
+                };
+
+                _bookingCollection.InsertOne(booking);
+            }
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error creating booking: {ex.Message}");
+            return false;
+        }
+    }
+
+
 
     public List<Booking> GetBookingsByMemberId(ObjectId memberId)
     {

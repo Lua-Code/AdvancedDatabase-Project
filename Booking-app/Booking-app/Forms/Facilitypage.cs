@@ -27,6 +27,9 @@ namespace Booking_app
             this.Load += Facilitypage_Load;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             dateTimePicker1.ValueChanged += DateTimePicker1_ValueChanged;
+            bookButton.Click += reserve_Click;
+
+            if(Session.IsStaff) { bookButton.Visible = false; }
 
         }
 
@@ -108,6 +111,7 @@ namespace Booking_app
                     selectedSlots.Add(availableSlots[index]);
                 }
             }
+            Console.WriteLine(selectedSlots.Count);
 
             var hourlyRate = facilityService.GetPriceByMembershipLevel(Session.GetUserId, FacilityId);
 
@@ -116,12 +120,25 @@ namespace Booking_app
 
         }
 
+        private void paymentCompleted_Event(object sender, EventArgs e) {
+
+            LoadBookingsForDate(dateTimePicker1.Value.Date);
+        }
+
 
 
         private void reserve_Click(object sender, EventArgs e)
         {
-            // open BoookPage
-            MessageBox.Show($"You selected {selectedBookings.Count} slot(s) to book.");
+
+            var hourlyRate = facilityService.GetPriceByMembershipLevel(Session.GetUserId, FacilityId);
+            decimal totalAmount = hourlyRate * selectedSlots.Count;
+            ObjectId memId = Session.GetUserId;
+
+
+            PaymentForm paymentPage = new PaymentForm(memId, FacilityId, totalAmount, selectedSlots, dateTimePicker1.Value.Date);
+            paymentPage.Show();
+            paymentPage.PaymentCompleted += paymentCompleted_Event;
+            //MessageBox.Show($"You selected {selectedSlots.Count} slot(s) to book.");
         }
 
         private void backButtn_Click(object sender, EventArgs e)
