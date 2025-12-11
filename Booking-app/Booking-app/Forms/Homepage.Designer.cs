@@ -33,6 +33,9 @@
             this.profileButton = new System.Windows.Forms.Button();
             this.name = new System.Windows.Forms.Label();
             this.myBookingsButton = new System.Windows.Forms.Button();
+            this.usageLogsButton = new System.Windows.Forms.Button();
+            this.addFacilityButton = new System.Windows.Forms.Button();
+            this.addStaffButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mainFlow
@@ -86,11 +89,41 @@
             this.myBookingsButton.Text = "My Bookings";
             this.myBookingsButton.UseVisualStyleBackColor = true;
             // 
+            // usageLogsButton
+            // 
+            this.usageLogsButton.Location = new System.Drawing.Point(919, 13);
+            this.usageLogsButton.Name = "usageLogsButton";
+            this.usageLogsButton.Size = new System.Drawing.Size(107, 34);
+            this.usageLogsButton.TabIndex = 5;
+            this.usageLogsButton.Text = "Usage Logs";
+            this.usageLogsButton.UseVisualStyleBackColor = true;
+            // 
+            // addFacilityButton
+            // 
+            this.addFacilityButton.Location = new System.Drawing.Point(806, 13);
+            this.addFacilityButton.Name = "addFacilityButton";
+            this.addFacilityButton.Size = new System.Drawing.Size(107, 34);
+            this.addFacilityButton.TabIndex = 6;
+            this.addFacilityButton.Text = "Add Facility";
+            this.addFacilityButton.UseVisualStyleBackColor = true;
+            // 
+            // addStaffButton
+            // 
+            this.addStaffButton.Location = new System.Drawing.Point(693, 13);
+            this.addStaffButton.Name = "addStaffButton";
+            this.addStaffButton.Size = new System.Drawing.Size(107, 34);
+            this.addStaffButton.TabIndex = 6;
+            this.addStaffButton.Text = "Add New Staff";
+            this.addStaffButton.UseVisualStyleBackColor = true;
+            // 
             // Homepage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.addStaffButton);
+            this.Controls.Add(this.addFacilityButton);
+            this.Controls.Add(this.usageLogsButton);
             this.Controls.Add(this.myBookingsButton);
             this.Controls.Add(this.name);
             this.Controls.Add(this.profileButton);
@@ -110,6 +143,9 @@
         private System.Windows.Forms.Button profileButton;
         private System.Windows.Forms.Label name;
         private System.Windows.Forms.Button myBookingsButton;
+        private System.Windows.Forms.Button usageLogsButton;
+        private System.Windows.Forms.Button addFacilityButton;
+        private System.Windows.Forms.Button addStaffButton;
     }
 }
 

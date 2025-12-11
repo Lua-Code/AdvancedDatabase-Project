@@ -33,6 +33,13 @@ public static class Session
         return null; //staff basically
     }
 
+    public static string getStaffRole()
+    { 
+        if(CurrentUser is Staff staff)
+            return staff.role;
+        return null; //member basically
+    }
+
 }
 
 

@@ -55,8 +55,16 @@ namespace Booking_app
 
             if(Session.IsStaff)
             {
-                Console.WriteLine("No button for you lmao");
                 myBookingsButton.Visible = false;
+                if (Session.getStaffRole() != "Supervisor") { 
+                    addStaffButton.Visible = false;
+                }
+
+            }
+            if (Session.IsMember) { 
+                addStaffButton.Visible= false;
+                addFacilityButton.Visible= false;
+                usageLogsButton.Visible= false;
             }
 
 
