@@ -138,6 +138,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\AddStaffpage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddStaffpage.Designer.cs">
+      <DependentUpon>AddStaffpage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Facilitypage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,6 +206,9 @@
     <Compile Include="Services\FacilityService.cs" />
     <Compile Include="Services\MongoDBClient.cs" />
     <Compile Include="Services\StaffService.cs" />
+    <EmbeddedResource Include="Forms\AddStaffpage.resx">
+      <DependentUpon>AddStaffpage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Facilitypage.resx">
       <DependentUpon>Facilitypage.cs</DependentUpon>
     </EmbeddedResource>

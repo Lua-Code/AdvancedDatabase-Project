@@ -13,12 +13,12 @@ using MongoDB.Bson;
 
 namespace Booking_app
 {
-    partial class Editpage
+    partial class AddStaffpage
     {
         private TableLayoutPanel mainLayout;
-        private Label lblHeader, lblName, lblEmail, lblPhone, lblLevel, lblStatus, lblJoinDate, lblPassword;
-        private TextBox txtName, txtEmail, txtPhone, txtLevel, txtStatus, txtJoinDate, txtPassword;
-        private Button btnSave, btnCancel;
+        private Label lblHeader, lblEmail, lblRole;
+        private TextBox txtName, txtEmail, txtPassword, txtRole, txtPhone;
+        private Button btnAdd, btnCancel;
         private System.ComponentModel.IContainer components = null;
 
         protected override void Dispose(bool disposing)
@@ -31,23 +31,19 @@ namespace Booking_app
         private void InitializeComponent()
         {
             this.mainLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.lblPassword = new System.Windows.Forms.Label();
             this.lblHeader = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.lblName = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.lblRole = new System.Windows.Forms.Label();
+            this.txtRole = new System.Windows.Forms.TextBox();
             this.lblPhone = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
-            this.lblLevel = new System.Windows.Forms.Label();
-            this.txtLevel = new System.Windows.Forms.TextBox();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.txtStatus = new System.Windows.Forms.TextBox();
-            this.lblJoinDate = new System.Windows.Forms.Label();
-            this.txtJoinDate = new System.Windows.Forms.TextBox();
-            this.lblPassword = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.mainLayout.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,22 +52,18 @@ namespace Booking_app
             this.mainLayout.ColumnCount = 2;
             this.mainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.mainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65F));
+            this.mainLayout.Controls.Add(this.lblPassword, 0, 3);
             this.mainLayout.Controls.Add(this.lblHeader, 0, 0);
             this.mainLayout.Controls.Add(this.lblName, 0, 1);
             this.mainLayout.Controls.Add(this.txtName, 1, 1);
             this.mainLayout.Controls.Add(this.lblEmail, 0, 2);
             this.mainLayout.Controls.Add(this.txtEmail, 1, 2);
-            this.mainLayout.Controls.Add(this.lblPhone, 0, 3);
-            this.mainLayout.Controls.Add(this.txtPhone, 1, 3);
-            this.mainLayout.Controls.Add(this.lblLevel, 0, 4);
-            this.mainLayout.Controls.Add(this.txtLevel, 1, 4);
-            this.mainLayout.Controls.Add(this.lblStatus, 0, 5);
-            this.mainLayout.Controls.Add(this.txtStatus, 1, 5);
-            this.mainLayout.Controls.Add(this.lblJoinDate, 0, 6);
-            this.mainLayout.Controls.Add(this.txtJoinDate, 1, 6);
-            this.mainLayout.Controls.Add(this.lblPassword, 0, 7);
-            this.mainLayout.Controls.Add(this.txtPassword, 1, 7);
-            this.mainLayout.Controls.Add(this.btnSave, 0, 9);
+            this.mainLayout.Controls.Add(this.txtPassword, 1, 3);
+            this.mainLayout.Controls.Add(this.lblRole, 0, 4);
+            this.mainLayout.Controls.Add(this.txtRole, 1, 4);
+            this.mainLayout.Controls.Add(this.lblPhone, 0, 5);
+            this.mainLayout.Controls.Add(this.txtPhone, 1, 5);
+            this.mainLayout.Controls.Add(this.btnAdd, 0, 9);
             this.mainLayout.Controls.Add(this.btnCancel, 0, 10);
             this.mainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainLayout.Location = new System.Drawing.Point(0, 0);
@@ -92,6 +84,17 @@ namespace Booking_app
             this.mainLayout.Size = new System.Drawing.Size(600, 650);
             this.mainLayout.TabIndex = 0;
             // 
+            // lblPassword
+            // 
+            this.lblPassword.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPassword.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lblPassword.Location = new System.Drawing.Point(23, 180);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(190, 45);
+            this.lblPassword.TabIndex = 17;
+            this.lblPassword.Text = "Password:";
+            this.lblPassword.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // lblHeader
             // 
             this.mainLayout.SetColumnSpan(this.lblHeader, 2);
@@ -101,30 +104,8 @@ namespace Booking_app
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(554, 70);
             this.lblHeader.TabIndex = 0;
-            this.lblHeader.Text = "Edit Profile";
+            this.lblHeader.Text = "Add New Staff";
             this.lblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnSave
-            // 
-            this.mainLayout.SetColumnSpan(this.btnSave, 2);
-            this.btnSave.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnSave.Location = new System.Drawing.Point(23, 533);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(554, 44);
-            this.btnSave.TabIndex = 15;
-            this.btnSave.Text = "Save Changes";
-            // 
-            // btnCancel
-            // 
-            this.mainLayout.SetColumnSpan(this.btnCancel, 2);
-            this.btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnCancel.Location = new System.Drawing.Point(23, 583);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(554, 44);
-            this.btnCancel.TabIndex = 16;
-            this.btnCancel.Text = "Cancel";
             // 
             // lblName
             // 
@@ -166,120 +147,90 @@ namespace Booking_app
             this.txtEmail.Size = new System.Drawing.Size(358, 29);
             this.txtEmail.TabIndex = 4;
             // 
+            // txtPassword
+            // 
+            this.txtPassword.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtPassword.Location = new System.Drawing.Point(219, 183);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(358, 29);
+            this.txtPassword.TabIndex = 6;
+            // 
+            // lblRole
+            // 
+            this.lblRole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRole.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lblRole.Location = new System.Drawing.Point(23, 225);
+            this.lblRole.Name = "lblRole";
+            this.lblRole.Size = new System.Drawing.Size(190, 45);
+            this.lblRole.TabIndex = 7;
+            this.lblRole.Text = "Role:";
+            this.lblRole.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtRole
+            // 
+            this.txtRole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtRole.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtRole.Location = new System.Drawing.Point(219, 228);
+            this.txtRole.Name = "txtRole";
+            this.txtRole.Size = new System.Drawing.Size(358, 29);
+            this.txtRole.TabIndex = 8;
+            // 
             // lblPhone
             // 
             this.lblPhone.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblPhone.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblPhone.Location = new System.Drawing.Point(23, 180);
+            this.lblPhone.Location = new System.Drawing.Point(23, 270);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(190, 45);
-            this.lblPhone.TabIndex = 5;
-            this.lblPhone.Text = "Phone:";
+            this.lblPhone.TabIndex = 9;
+            this.lblPhone.Text = "Phone Number:";
             this.lblPhone.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // txtPhone
             // 
             this.txtPhone.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtPhone.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtPhone.Location = new System.Drawing.Point(219, 183);
+            this.txtPhone.Location = new System.Drawing.Point(219, 273);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(358, 29);
-            this.txtPhone.TabIndex = 6;
+            this.txtPhone.TabIndex = 10;
             // 
-            // lblLevel
+            // btnAdd
             // 
-            this.lblLevel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblLevel.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblLevel.Location = new System.Drawing.Point(23, 225);
-            this.lblLevel.Name = "lblLevel";
-            this.lblLevel.Size = new System.Drawing.Size(190, 45);
-            this.lblLevel.TabIndex = 7;
-            this.lblLevel.Text = "Level:";
-            this.lblLevel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.mainLayout.SetColumnSpan(this.btnAdd, 2);
+            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnAdd.Location = new System.Drawing.Point(23, 533);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(554, 44);
+            this.btnAdd.TabIndex = 15;
+            this.btnAdd.Text = "Add";
             // 
-            // txtLevel
+            // btnCancel
             // 
-            this.txtLevel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtLevel.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtLevel.Location = new System.Drawing.Point(219, 228);
-            this.txtLevel.Name = "txtLevel";
-            this.txtLevel.ReadOnly = true;
-            this.txtLevel.Size = new System.Drawing.Size(358, 29);
-            this.txtLevel.TabIndex = 8;
+            this.mainLayout.SetColumnSpan(this.btnCancel, 2);
+            this.btnCancel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnCancel.Location = new System.Drawing.Point(23, 583);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(554, 44);
+            this.btnCancel.TabIndex = 16;
+            this.btnCancel.Text = "Cancel";
             // 
-            // lblStatus
-            // 
-            this.lblStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblStatus.Location = new System.Drawing.Point(23, 270);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(190, 45);
-            this.lblStatus.TabIndex = 9;
-            this.lblStatus.Text = "Status:";
-            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtStatus
-            // 
-            this.txtStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtStatus.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtStatus.Location = new System.Drawing.Point(219, 273);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(358, 29);
-            this.txtStatus.TabIndex = 10;
-            // 
-            // lblJoinDate
-            // 
-            this.lblJoinDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblJoinDate.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblJoinDate.Location = new System.Drawing.Point(23, 315);
-            this.lblJoinDate.Name = "lblJoinDate";
-            this.lblJoinDate.Size = new System.Drawing.Size(190, 45);
-            this.lblJoinDate.TabIndex = 11;
-            this.lblJoinDate.Text = "Join Date:";
-            this.lblJoinDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtJoinDate
-            // 
-            this.txtJoinDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtJoinDate.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtJoinDate.Location = new System.Drawing.Point(219, 318);
-            this.txtJoinDate.Name = "txtJoinDate";
-            this.txtJoinDate.ReadOnly = true;
-            this.txtJoinDate.Size = new System.Drawing.Size(358, 29);
-            this.txtJoinDate.TabIndex = 12;
-            // 
-            // lblPassword
-            // 
-            this.lblPassword.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPassword.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblPassword.Location = new System.Drawing.Point(23, 360);
-            this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(190, 45);
-            this.lblPassword.TabIndex = 13;
-            this.lblPassword.Text = "Password:";
-            this.lblPassword.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtPassword.Location = new System.Drawing.Point(219, 363);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(358, 29);
-            this.txtPassword.TabIndex = 14;
-            // 
-            // Editpage
+            // AddStaffpage
             // 
             this.ClientSize = new System.Drawing.Size(600, 650);
             this.Controls.Add(this.mainLayout);
-            this.Name = "Editpage";
+            this.Name = "AddStaffpage";
             this.Text = "Edit Member Profile";
             this.mainLayout.ResumeLayout(false);
             this.mainLayout.PerformLayout();
             this.ResumeLayout(false);
 
         }
+        private Label lblPassword;
+        private Label lblName;
+        private Label lblPhone;
     }
 }

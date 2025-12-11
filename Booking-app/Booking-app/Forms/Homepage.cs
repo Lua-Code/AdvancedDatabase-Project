@@ -53,6 +53,12 @@ namespace Booking_app
 
             };
 
+            addStaffButton.Click += (s, e) =>
+            {
+                AddStaffpage addStaffpage = new AddStaffpage();
+                addStaffpage.Show();
+            };
+
             if(Session.IsStaff)
             {
                 myBookingsButton.Visible = false;

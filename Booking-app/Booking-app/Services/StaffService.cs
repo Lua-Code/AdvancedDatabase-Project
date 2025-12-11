@@ -21,6 +21,11 @@ public class StaffService
         _staffCollection = db.GetCollection<Staff>("Staff");
     }
 
+    public Staff GetByEmail(string email)
+    {
+        return _staffCollection.Find(m => m.email == email).FirstOrDefault();
+    }
+
     public Staff GetByEmailAndPassword(string email, string password)
     {
         return _staffCollection.Find(m => m.email == email && m.password == password).FirstOrDefault();
@@ -101,5 +106,20 @@ public class StaffService
 
         var result = _staffCollection.UpdateOne(filter, update);
         return result.ModifiedCount > 0;
+    }
+
+    public bool AddStaff(Staff staff)
+    {
+        try
+        {
+            _staffCollection.InsertOne(staff);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error adding staff: {ex.Message}");
+            return false;
+        }
+
     }
 }
