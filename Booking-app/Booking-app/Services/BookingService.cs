@@ -1,25 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MongoDB.Driver;
 using MongoDB.Bson;
+using MongoDB.Driver;
 
 public class BookingService
 {
     private readonly IMongoCollection<Booking> _bookingCollection;
-    private readonly StaffService _staffService;
+    private StaffService _staffService;
+
+    public StaffService StaffService
+    {
+        get => _staffService ?? throw new InvalidOperationException("StaffService must be assigned before using this method.");
+        set => _staffService = value ?? throw new ArgumentNullException(nameof(value));
+    }
 
     public BookingService()
     {
         var db = MongoDBClient.GetDatabase();
         _bookingCollection = db.GetCollection<Booking>("Booking");
-        _staffService = new StaffService();
-
     }
 
-    public bool CreateBookings(ObjectId memberId,ObjectId facilityId, List<(int Start, int End)> selectedSlots,DateTime bookingDate)
+    public bool CreateBookings(ObjectId memberId, ObjectId facilityId, List<(int Start, int End)> selectedSlots, DateTime bookingDate)
     {
         try
         {
@@ -35,10 +36,9 @@ public class BookingService
             for (int i = 1; i < selectedSlots.Count; i++)
             {
                 var slot = selectedSlots[i];
-
                 if (slot.Start == currentEnd)
                 {
-                    currentEnd = slot.End; 
+                    currentEnd = slot.End;
                 }
                 else
                 {
@@ -48,18 +48,17 @@ public class BookingService
                 }
             }
 
-
             mergedSlots.Add((currentStart, currentEnd));
 
             foreach (var bookingSlot in mergedSlots)
             {
-                Staff availableStaff = _staffService.GetAvailableStaff(facilityId, bookingDate, bookingSlot.Start, bookingSlot.End);
+                Staff availableStaff = StaffService.GetAvailableStaff(facilityId, bookingDate, bookingSlot.Start, bookingSlot.End);
 
                 Booking booking = new Booking
                 {
                     member_id = memberId,
                     facility_id = facilityId,
-                    staff_id = availableStaff.Id,
+                    staff_id = availableStaff?.Id ?? ObjectId.Empty,
                     bookingDate = bookingDate,
                     startTime = bookingSlot.Start,
                     endTime = bookingSlot.End,
@@ -77,6 +76,22 @@ public class BookingService
             Console.WriteLine($"Error creating booking: {ex.Message}");
             return false;
         }
+    }
+
+    public bool HasConflict(ObjectId staffId, ObjectId facilityId, DateTime date, int startTime, int endTime)
+    {
+        var bookings = GetBookingsByStaffId(staffId);
+        foreach (var b in bookings)
+        {
+            if (b.facility_id == facilityId &&
+                b.bookingDate.Date == date.Date &&
+                b.startTime < endTime &&
+                b.endTime > startTime)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
 
@@ -142,8 +157,31 @@ public class BookingService
     }
 
 
+    public List<Booking> GetBookingsByStaffId(ObjectId staffId)
+    {
+        return _bookingCollection
+            .Find(b => b.staff_id == staffId)
+            .ToList();
+    }
 
+    public bool UpdateBooking(Booking booking)
+    {
+        if (booking == null || booking.Id == ObjectId.Empty)
+            return false;
 
+        var filter = Builders<Booking>.Filter.Eq(b => b.Id, booking.Id);
 
+        var update = Builders<Booking>.Update
+            .Set(b => b.facility_id, booking.facility_id)
+            .Set(b => b.staff_id, booking.staff_id)
+            .Set(b => b.member_id, booking.member_id)
+            .Set(b => b.bookingDate, booking.bookingDate)
+            .Set(b => b.startTime, booking.startTime)
+            .Set(b => b.endTime, booking.endTime)
+            .Set(b => b.Status, booking.Status); 
+
+        var result = _bookingCollection.UpdateOne(filter, update);
+        return result.ModifiedCount > 0;
+    }
 
 }

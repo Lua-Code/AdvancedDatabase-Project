@@ -1,22 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 using MongoDB.Bson;
 
 namespace Booking_app
 {
     public partial class Editpage : Form
     {
-        AuthService authService;
+        private MemberService memberService;
+        private StaffService staffService;
+        private BookingService bookingService;
         private IUser user;
 
         public Editpage()
@@ -24,9 +18,17 @@ namespace Booking_app
             user = Session.CurrentUser;
             InitializeComponent();
 
+            memberService = new MemberService();
+            staffService = new StaffService();
+            bookingService = new BookingService();
+
+            bookingService.StaffService = staffService;
+            staffService.BookingService = bookingService;
+
             if (Session.IsMember)
             {
                 Member member = (Member)user;
+
                 txtName.Text = member.name;
                 txtEmail.Text = member.email;
                 txtPhone.Text = member.phone;
@@ -34,21 +36,22 @@ namespace Booking_app
                 txtJoinDate.Text = member.joinDate.ToString("yyyy-MM-dd");
                 txtPassword.Text = member.password;
 
+                txtStatus.ReadOnly = true;
+                txtJoinDate.ReadOnly = true;
             }
             else if (Session.IsStaff)
             {
                 Staff staff = (Staff)user;
+
                 txtName.Text = staff.name;
                 txtEmail.Text = staff.email;
                 txtPhone.Text = staff.phone;
                 txtPassword.Text = staff.password;
+
+                // Staff cannot edit status or join date
                 txtStatus.Visible = false;
                 txtJoinDate.Visible = false;
-
-
             }
-
-
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -81,9 +84,11 @@ namespace Booking_app
                 MessageBox.Show("Name should contain only letters and spaces.");
                 return;
             }
-            if (!email.Equals(user.email, StringComparison.OrdinalIgnoreCase))
+
+            if (Session.IsMember && !email.Equals(user.email, StringComparison.OrdinalIgnoreCase))
             {
-                var existing = _memberService.GetByEmail(email);
+                // Only check email uniqueness against members
+                var existing = memberService.GetByEmail(email);
                 if (existing != null)
                 {
                     MessageBox.Show("This email is already used by another member.");
@@ -91,26 +96,42 @@ namespace Booking_app
                 }
             }
 
-            _currentMember.name = name;
-            _currentMember.email = email;
-            _currentMember.phone = phone;
-            _currentMember.password = password;
-
             try
             {
-                _memberService.Update(_currentMember); 
-                MessageBox.Show("Member updated successfully!");
-                this.Close(); 
+                if (Session.IsMember)
+                {
+                    Member member = (Member)user;
+                    member.name = name;
+                    member.email = email;
+                    member.phone = phone;
+                    member.password = password;
+
+                    memberService.UpdateMember(member);
+                    MessageBox.Show("Member updated successfully!");
+                }
+                else if (Session.IsStaff)
+                {
+                    Staff staff = (Staff)user;
+                    staff.name = name;
+                    staff.email = email;
+                    staff.phone = phone;
+                    staff.password = password;
+
+                    staffService.UpdateStaff(staff);
+                    MessageBox.Show("Staff updated successfully!");
+                }
+
+                this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error updating member: {ex.Message}");
+                MessageBox.Show($"Error updating user: {ex.Message}");
             }
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
-            this.Close(); 
+            this.Close();
         }
     }
 }

@@ -36,6 +36,7 @@ namespace Booking_app
                 txtEmail.Text = member.email;
                 txtPhone.Text = member.phone;
                 txtStatus.Text = member.membershipStatus;
+                txtLevel.Text = member.membershipLevel;
                 txtJoinDate.Text = member.joinDate.ToString("yyyy-MM-dd");
                 txtPassword.Text = member.password;
 
@@ -47,7 +48,7 @@ namespace Booking_app
                 txtEmail.Text = staff.email;
                 txtPhone.Text = staff.phone;
                 txtPassword.Text = staff.password;
-                txtStatus.Visible = false;
+                txtStatus.Text = staff.role;
                 txtJoinDate.Visible = false;
 
             
@@ -58,6 +59,7 @@ namespace Booking_app
         private void BtnEdit_Click(object sender, EventArgs e)
         {
             Editpage editForm = new Editpage();
+            editForm.ShowDialog();
             editForm.FormClosed += (s, args) => LoadUserData(); 
             this.Hide();
         }
@@ -72,7 +74,7 @@ namespace Booking_app
 
             if (confirm == DialogResult.Yes)
             {
-                authService.Delete(Session.GetUserId);
+                authService.DeleteUser(Session.GetUserId);
                 MessageBox.Show("Account deleted successfully.");
                 this.Close();
             }

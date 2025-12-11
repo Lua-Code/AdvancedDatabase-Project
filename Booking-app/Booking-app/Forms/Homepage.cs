@@ -40,11 +40,22 @@ namespace Booking_app
             logoutButton.Click += (s, e) =>
             {
                 authService.Logout();
+                Loginpage loginpage = new Loginpage();
+                loginpage.Show();
                 this.Close();
+            };
+
+            profileButton.Click += (s, e) =>
+            {
+                Profilepage profilepage = new Profilepage();
+                profilepage.Show();
+
+
             };
 
             if(Session.IsStaff)
             {
+                Console.WriteLine("No button for you lmao");
                 myBookingsButton.Visible = false;
             }
 

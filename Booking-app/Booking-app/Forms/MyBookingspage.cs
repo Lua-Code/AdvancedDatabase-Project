@@ -10,7 +10,7 @@ namespace Booking_app
     {
         private BookingService _bookingService;
         private FacilityService _facilityService;
-        private StaffService _staffService;   
+        private StaffService _staffService;
         private ObjectId _memberId = Session.CurrentUser.Id;
 
         public MyBookingspage()
@@ -19,6 +19,11 @@ namespace Booking_app
             _bookingService = new BookingService();
             _facilityService = new FacilityService();
             _staffService = new StaffService();
+
+            _bookingService.StaffService = _staffService;
+            _staffService.BookingService = _bookingService;
+
+
         }
 
         private void MyBookingspage_Load(object sender, EventArgs e)

@@ -37,6 +37,9 @@ namespace Booking_app
             bookingService = new BookingService();
             staffService = new StaffService();
 
+            bookingService.StaffService = staffService;
+            staffService.BookingService = bookingService;
+
             MemberId = memberId;
             FacilityId = facilityid;
             Amount = amount;

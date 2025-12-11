@@ -12,6 +12,7 @@ namespace Booking_app
     public partial class Facilitypage : Form
     {
         private BookingService bookingService;
+        private StaffService staffService;
         private FacilityService facilityService;
         private List<Booking> selectedBookings = new List<Booking>();
 
@@ -22,7 +23,11 @@ namespace Booking_app
             InitializeComponent();
             FacilityId = facilityId;
             bookingService = new BookingService();
+            staffService = new StaffService();
             facilityService = new FacilityService();
+
+            bookingService.StaffService = staffService;
+            staffService.BookingService = bookingService; 
 
             this.Load += Facilitypage_Load;
             listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
