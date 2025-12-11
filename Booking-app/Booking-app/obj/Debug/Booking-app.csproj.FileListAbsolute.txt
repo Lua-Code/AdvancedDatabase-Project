@@ -56,3 +56,4 @@ D:\Github\AdvancedDatabase-Project\Booking-app\Booking-app\obj\Debug\Booking-.FF
 D:\Github\AdvancedDatabase-Project\Booking-app\Booking-app\obj\Debug\Booking-app.exe
 D:\Github\AdvancedDatabase-Project\Booking-app\Booking-app\obj\Debug\Booking-app.pdb
 D:\Github\AdvancedDatabase-Project\Booking-app\Booking-app\obj\Debug\Booking_app.AddStaffpage.resources
+D:\Github\AdvancedDatabase-Project\Booking-app\Booking-app\obj\Debug\Booking_app.AddFacilitypage.resources

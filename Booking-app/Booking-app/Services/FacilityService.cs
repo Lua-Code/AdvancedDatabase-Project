@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -62,10 +63,38 @@ public class FacilityService
         return _facilityCollection.Find(f => f.name == name).ToList();
     }
 
+    public Facility GetByNameLocationAndType(string name, string location, string type)
+    {
+        var filter = Builders<Facility>.Filter.And(
+            Builders<Facility>.Filter.Regex(f => f.name, new BsonRegularExpression($"^{Regex.Escape(name)}$", "i")),
+            Builders<Facility>.Filter.Regex(f => f.location, new BsonRegularExpression($"^{Regex.Escape(location)}$", "i")),
+            Builders<Facility>.Filter.Regex(f => f.type, new BsonRegularExpression($"^{Regex.Escape(type)}$", "i"))
+        );
+
+        return _facilityCollection.Find(filter).FirstOrDefault();
+
+    }
+
+
     public List<string> GetDistinctTypes()
     {
         return _facilityCollection.Distinct<string>("type", Builders<Facility>.Filter.Empty).ToList();
     }
+
+    public bool AddFacility(Facility facility)
+    {
+        if (facility == null)
+            return false;
+
+        // Check for duplicates
+        var existing = GetByNameLocationAndType(facility.name, facility.location, facility.type);
+        if (existing != null)
+            return false; 
+
+        _facilityCollection.InsertOne(facility);
+        return true;
+    }
+
 
 }
 

@@ -59,6 +59,13 @@ namespace Booking_app
                 addStaffpage.Show();
             };
 
+            addFacilityButton.Click += (s, e) =>
+            {
+                AddFacilitypage addFacilitypage = new AddFacilitypage();
+                addFacilitypage.FacilityUpdated += (sender2, args) => RefreshFacilities();
+                addFacilitypage.Show();
+            };
+
             if(Session.IsStaff)
             {
                 myBookingsButton.Visible = false;
@@ -177,6 +184,19 @@ namespace Booking_app
             mainFlow.Controls.Add(label);
             mainFlow.Controls.Add(flowLayoutPanel);
         }
+
+        private void RefreshFacilities()
+        {
+            mainFlow.Controls.Clear(); 
+
+            var types = facilityService.GetDistinctTypes();
+            foreach (var type in types)
+            {
+                var facilities = facilityService.GetByType(type);
+                addFacilitySection(type + ":", facilities);
+            }
+        }
+
 
         private void Homepage_Load(object sender, EventArgs e)
         {
