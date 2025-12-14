@@ -184,4 +184,11 @@ public class BookingService
         return result.ModifiedCount > 0;
     }
 
+    public Booking GetById(ObjectId bookingId)
+    {
+        return _bookingCollection
+            .Find(b => b.Id == bookingId)
+            .FirstOrDefault();
+    }
+
 }
