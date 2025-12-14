@@ -48,6 +48,32 @@ public class FacilityService
         return (1 - discount) * facilityHourlyRate;
     }
 
+    public decimal GetPriceByTime(ObjectId facilityId,int startTime,int endTime)
+    {
+        var facility = GetById(facilityId);
+        decimal facilityHourlyRate = facility.hourlyRate;
+
+        int duration = endTime - startTime;
+        decimal discount = 0;
+        string membershipLevel = Session.getMembershipLevel();
+
+        if (membershipLevel == "Premium")
+        {
+            discount = 0.1m;
+        }
+        else if (membershipLevel == "VIP")
+        {
+            discount = 0.25m;
+        }
+
+        return (1 - discount) * facilityHourlyRate * duration;
+
+
+
+
+
+
+    }
     public List<Facility> GetAllFacilities()
     {
         return _facilityCollection.Find(f => true).ToList();
@@ -62,6 +88,7 @@ public class FacilityService
     {
         return _facilityCollection.Find(f => f.name == name).ToList();
     }
+
 
     public Facility GetByNameLocationAndType(string name, string location, string type)
     {
@@ -93,6 +120,32 @@ public class FacilityService
 
         _facilityCollection.InsertOne(facility);
         return true;
+    }
+
+    public bool UpdateFacility(Facility facility)
+    {
+        if (facility == null || facility.Id == ObjectId.Empty)
+            return false;
+
+        var filter = Builders<Facility>.Filter.Eq(f => f.Id, facility.Id);
+        var update = Builders<Facility>.Update
+            .Set(f => f.name, facility.name)
+            .Set(f => f.type, facility.type)
+            .Set(f => f.location, facility.location)
+            .Set(f => f.availability, facility.availability)
+            .Set(f => f.capacity, facility.capacity)
+            .Set(f => f.hourlyRate, facility.hourlyRate);
+
+        var result = _facilityCollection.UpdateOne(filter, update);
+        return result.ModifiedCount > 0;
+
+    }
+
+    public bool DeleteFacility(Facility facility)
+    {
+        
+        var result = _facilityCollection.DeleteOne(f => f.Id == facility.Id);
+        return result.DeletedCount > 0;
     }
 
 

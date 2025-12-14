@@ -7,6 +7,8 @@ public class BookingService
 {
     private readonly IMongoCollection<Booking> _bookingCollection;
     private StaffService _staffService;
+    private PaymentService paymentService;
+    private FacilityService facilityService;
 
     public StaffService StaffService
     {
@@ -18,9 +20,11 @@ public class BookingService
     {
         var db = MongoDBClient.GetDatabase();
         _bookingCollection = db.GetCollection<Booking>("Booking");
+        facilityService = new FacilityService();
+        paymentService = new PaymentService();  
     }
 
-    public bool CreateBookings(ObjectId memberId, ObjectId facilityId, List<(int Start, int End)> selectedSlots, DateTime bookingDate)
+    public bool CreateBookings(ObjectId memberId, ObjectId facilityId, List<(int Start, int End)> selectedSlots, DateTime bookingDate,string paymentMethod)
     {
         try
         {
@@ -54,8 +58,10 @@ public class BookingService
             {
                 Staff availableStaff = StaffService.GetAvailableStaff(facilityId, bookingDate, bookingSlot.Start, bookingSlot.End);
 
+                ObjectId bookingId = ObjectId.GenerateNewId();
                 Booking booking = new Booking
                 {
+                    Id = bookingId,
                     member_id = memberId,
                     facility_id = facilityId,
                     staff_id = availableStaff?.Id ?? ObjectId.Empty,
@@ -66,7 +72,10 @@ public class BookingService
                     creationDate = DateTime.UtcNow
                 };
 
+                decimal price = facilityService.GetPriceByTime(facilityId,bookingSlot.Start, bookingSlot.End);
+                paymentService.CreatePayment(memberId, bookingId, price, "Booking Fee", paymentMethod);
                 _bookingCollection.InsertOne(booking);
+                
             }
 
             return true;

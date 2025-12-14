@@ -32,8 +32,6 @@ namespace Booking_app
         {
             this.mainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.lblHeader = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.lblName = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -48,6 +46,8 @@ namespace Booking_app
             this.txtJoinDate = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.mainLayout.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -104,6 +104,150 @@ namespace Booking_app
             this.lblHeader.Text = "Edit Profile";
             this.lblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblName
+            // 
+            this.lblName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblName.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lblName.Location = new System.Drawing.Point(23, 90);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(190, 45);
+            this.lblName.TabIndex = 1;
+            this.lblName.Text = "Name:";
+            this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtName
+            // 
+            this.txtName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtName.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtName.Location = new System.Drawing.Point(219, 93);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(358, 50);
+            this.txtName.TabIndex = 2;
+            // 
+            // lblEmail
+            // 
+            this.lblEmail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblEmail.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lblEmail.Location = new System.Drawing.Point(23, 135);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(190, 45);
+            this.lblEmail.TabIndex = 3;
+            this.lblEmail.Text = "Email:";
+            this.lblEmail.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtEmail.Location = new System.Drawing.Point(219, 138);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(358, 50);
+            this.txtEmail.TabIndex = 4;
+            // 
+            // lblPhone
+            // 
+            this.lblPhone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPhone.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lblPhone.Location = new System.Drawing.Point(23, 180);
+            this.lblPhone.Name = "lblPhone";
+            this.lblPhone.Size = new System.Drawing.Size(190, 45);
+            this.lblPhone.TabIndex = 5;
+            this.lblPhone.Text = "Phone:";
+            this.lblPhone.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPhone.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtPhone.Location = new System.Drawing.Point(219, 183);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(358, 50);
+            this.txtPhone.TabIndex = 6;
+            // 
+            // lblLevel
+            // 
+            this.lblLevel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblLevel.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lblLevel.Location = new System.Drawing.Point(23, 225);
+            this.lblLevel.Name = "lblLevel";
+            this.lblLevel.Size = new System.Drawing.Size(190, 45);
+            this.lblLevel.TabIndex = 7;
+            this.lblLevel.Text = "Level:";
+            this.lblLevel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtLevel
+            // 
+            this.txtLevel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtLevel.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtLevel.Location = new System.Drawing.Point(219, 228);
+            this.txtLevel.Name = "txtLevel";
+            this.txtLevel.ReadOnly = true;
+            this.txtLevel.Size = new System.Drawing.Size(358, 50);
+            this.txtLevel.TabIndex = 8;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lblStatus.Location = new System.Drawing.Point(23, 270);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(190, 45);
+            this.lblStatus.TabIndex = 9;
+            this.lblStatus.Text = "Status:";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtStatus
+            // 
+            this.txtStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtStatus.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtStatus.Location = new System.Drawing.Point(219, 273);
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.ReadOnly = true;
+            this.txtStatus.Size = new System.Drawing.Size(358, 50);
+            this.txtStatus.TabIndex = 10;
+            // 
+            // lblJoinDate
+            // 
+            this.lblJoinDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblJoinDate.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lblJoinDate.Location = new System.Drawing.Point(23, 315);
+            this.lblJoinDate.Name = "lblJoinDate";
+            this.lblJoinDate.Size = new System.Drawing.Size(190, 45);
+            this.lblJoinDate.TabIndex = 11;
+            this.lblJoinDate.Text = "Join Date:";
+            this.lblJoinDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtJoinDate
+            // 
+            this.txtJoinDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtJoinDate.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtJoinDate.Location = new System.Drawing.Point(219, 318);
+            this.txtJoinDate.Name = "txtJoinDate";
+            this.txtJoinDate.ReadOnly = true;
+            this.txtJoinDate.Size = new System.Drawing.Size(358, 50);
+            this.txtJoinDate.TabIndex = 12;
+            // 
+            // lblPassword
+            // 
+            this.lblPassword.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblPassword.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lblPassword.Location = new System.Drawing.Point(23, 360);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(190, 45);
+            this.lblPassword.TabIndex = 13;
+            this.lblPassword.Text = "Password:";
+            this.lblPassword.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtPassword.Location = new System.Drawing.Point(219, 363);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(358, 50);
+            this.txtPassword.TabIndex = 14;
+            // 
             // btnSave
             // 
             this.mainLayout.SetColumnSpan(this.btnSave, 2);
@@ -125,150 +269,6 @@ namespace Booking_app
             this.btnCancel.Size = new System.Drawing.Size(554, 44);
             this.btnCancel.TabIndex = 16;
             this.btnCancel.Text = "Cancel";
-            // 
-            // lblName
-            // 
-            this.lblName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblName.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblName.Location = new System.Drawing.Point(23, 90);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(190, 45);
-            this.lblName.TabIndex = 1;
-            this.lblName.Text = "Name:";
-            this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtName
-            // 
-            this.txtName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtName.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtName.Location = new System.Drawing.Point(219, 93);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(358, 29);
-            this.txtName.TabIndex = 2;
-            // 
-            // lblEmail
-            // 
-            this.lblEmail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblEmail.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblEmail.Location = new System.Drawing.Point(23, 135);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(190, 45);
-            this.lblEmail.TabIndex = 3;
-            this.lblEmail.Text = "Email:";
-            this.lblEmail.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtEmail.Location = new System.Drawing.Point(219, 138);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(358, 29);
-            this.txtEmail.TabIndex = 4;
-            // 
-            // lblPhone
-            // 
-            this.lblPhone.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPhone.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblPhone.Location = new System.Drawing.Point(23, 180);
-            this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(190, 45);
-            this.lblPhone.TabIndex = 5;
-            this.lblPhone.Text = "Phone:";
-            this.lblPhone.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtPhone
-            // 
-            this.txtPhone.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPhone.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtPhone.Location = new System.Drawing.Point(219, 183);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(358, 29);
-            this.txtPhone.TabIndex = 6;
-            // 
-            // lblLevel
-            // 
-            this.lblLevel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblLevel.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblLevel.Location = new System.Drawing.Point(23, 225);
-            this.lblLevel.Name = "lblLevel";
-            this.lblLevel.Size = new System.Drawing.Size(190, 45);
-            this.lblLevel.TabIndex = 7;
-            this.lblLevel.Text = "Level:";
-            this.lblLevel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtLevel
-            // 
-            this.txtLevel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtLevel.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtLevel.Location = new System.Drawing.Point(219, 228);
-            this.txtLevel.Name = "txtLevel";
-            this.txtLevel.ReadOnly = true;
-            this.txtLevel.Size = new System.Drawing.Size(358, 29);
-            this.txtLevel.TabIndex = 8;
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblStatus.Location = new System.Drawing.Point(23, 270);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(190, 45);
-            this.lblStatus.TabIndex = 9;
-            this.lblStatus.Text = "Status:";
-            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtStatus
-            // 
-            this.txtStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtStatus.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtStatus.Location = new System.Drawing.Point(219, 273);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(358, 29);
-            this.txtStatus.TabIndex = 10;
-            // 
-            // lblJoinDate
-            // 
-            this.lblJoinDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblJoinDate.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblJoinDate.Location = new System.Drawing.Point(23, 315);
-            this.lblJoinDate.Name = "lblJoinDate";
-            this.lblJoinDate.Size = new System.Drawing.Size(190, 45);
-            this.lblJoinDate.TabIndex = 11;
-            this.lblJoinDate.Text = "Join Date:";
-            this.lblJoinDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtJoinDate
-            // 
-            this.txtJoinDate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtJoinDate.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtJoinDate.Location = new System.Drawing.Point(219, 318);
-            this.txtJoinDate.Name = "txtJoinDate";
-            this.txtJoinDate.ReadOnly = true;
-            this.txtJoinDate.Size = new System.Drawing.Size(358, 29);
-            this.txtJoinDate.TabIndex = 12;
-            // 
-            // lblPassword
-            // 
-            this.lblPassword.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblPassword.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblPassword.Location = new System.Drawing.Point(23, 360);
-            this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(190, 45);
-            this.lblPassword.TabIndex = 13;
-            this.lblPassword.Text = "Password:";
-            this.lblPassword.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtPassword.Location = new System.Drawing.Point(219, 363);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(358, 29);
-            this.txtPassword.TabIndex = 14;
             // 
             // Editpage
             // 

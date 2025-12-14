@@ -16,7 +16,7 @@ public class PaymentService {
         _paymentCollection = db.GetCollection<Payment>("Payment");
     }
 
-    public void CreatePayment(ObjectId memberId, ObjectId bookingId, int amount, string paymentMethod,string paymentType )
+    public void CreatePayment(ObjectId memberId, ObjectId bookingId, decimal amount, string paymentMethod,string paymentType )
     {
         var payment = new Payment
         {

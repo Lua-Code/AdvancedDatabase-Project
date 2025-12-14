@@ -11,6 +11,7 @@ namespace Booking_app
 {
     public partial class Facilitypage : Form
     {
+        public event EventHandler FacilityUpdated;
         private BookingService bookingService;
         private StaffService staffService;
         private FacilityService facilityService;
@@ -42,6 +43,17 @@ namespace Booking_app
                 priceLabel.Top = capacityLabel.Bottom + 20; 
                 priceLabel.Left = locationLabel.Left;
             }
+
+            if (Session.IsMember) { 
+                updateBtn.Visible = false;
+                deleteBtn.Visible = false;
+           
+            }
+
+            updateBtn.Click += updateBtn_Click;
+            deleteBtn.Click += deleteBtn_Click;
+
+            
 
         }
 
@@ -166,6 +178,29 @@ namespace Booking_app
             this.Close();
         }
 
+
+        private void updateBtn_Click(object sender, EventArgs e) { 
+            Facility facility = facilityService.GetById(FacilityId);
+            EditFacilitypage editFacilitypage = new EditFacilitypage(facility);
+
+            editFacilitypage.Show();
+        
+        
+        }
+
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            Facility facility = facilityService.GetById(FacilityId);
+            facilityService.DeleteFacility(facility);
+
+            FacilityUpdated?.Invoke(this, EventArgs.Empty);
+            this.Close();
+            Homepage homepage = new Homepage();
+            homepage.Show();
+
+
+
+        }
 
 
         private void label1_Click(object sender, EventArgs e) { }

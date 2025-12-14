@@ -150,6 +150,21 @@
     <Compile Include="Forms\AddStaffpage.Designer.cs">
       <DependentUpon>AddStaffpage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddUsage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddUsage.Designer.cs">
+      <DependentUpon>AddUsage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditFacilitypage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditFacilitypage.Designer.cs">
+      <DependentUpon>EditFacilitypage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PaymentForm.Designer.cs">
+      <DependentUpon>PaymentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Facilitypage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,6 +210,12 @@
     <Compile Include="Forms\PaymentForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\StaffUsageLogsPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StaffUsageLogsPage.Designer.cs">
+      <DependentUpon>StaffUsageLogsPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\IUser.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Facility.cs" />
@@ -212,11 +233,15 @@
     <Compile Include="Services\FacilityService.cs" />
     <Compile Include="Services\MongoDBClient.cs" />
     <Compile Include="Services\StaffService.cs" />
+    <Compile Include="Services\UsageLogService.cs" />
     <EmbeddedResource Include="Forms\AddFacilitypage.resx">
       <DependentUpon>AddFacilitypage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddStaffpage.resx">
       <DependentUpon>AddStaffpage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditFacilitypage.resx">
+      <DependentUpon>EditFacilitypage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Facilitypage.resx">
       <DependentUpon>Facilitypage.cs</DependentUpon>

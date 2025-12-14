@@ -52,6 +52,11 @@ namespace Booking_app
                 txtStatus.Visible = false;
                 txtJoinDate.Visible = false;
             }
+
+
+
+            btnSave.Click += BtnSave_Click; 
+            btnCancel.Click += BtnCancel_Click;
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
