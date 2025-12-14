@@ -62,6 +62,16 @@ namespace Booking_app
                 return;
             }
 
+            if (user is Member member)
+            {
+                if (member.membershipStatus?.ToLower() == "suspended")
+                {
+                    MessageBox.Show("Your membership is suspended. You cannot login.");
+                    return;
+                }
+            }
+
+
             // MemberProfile profileForm = new MemberProfile(member);
             //profileForm.FormClosed += (s, args) => this.Show(); 
             //profileForm.Show();

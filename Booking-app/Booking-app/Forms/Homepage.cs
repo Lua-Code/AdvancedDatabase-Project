@@ -65,8 +65,13 @@ namespace Booking_app
                 addFacilitypage.FacilityUpdated += (sender2, args) => RefreshFacilities();
                 addFacilitypage.Show();
             };
+            usageLogsButton.Click += (s, e) =>
+            {
+                StaffUsageLogsPage usageLogspage = new StaffUsageLogsPage();
+                usageLogspage.Show();
+            };
 
-            if(Session.IsStaff)
+            if (Session.IsStaff)
             {
                 myBookingsButton.Visible = false;
                 if (Session.getStaffRole() != "Supervisor") { 

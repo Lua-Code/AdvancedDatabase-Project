@@ -71,7 +71,7 @@ namespace Booking_app
                 phone = phone,
                 membershipLevel = level,
                 joinDate = DateTime.Now,
-                membershipStatus = "Inactive"
+                membershipStatus = "Active"
             };
 
             _authService.Signup(newMember);
