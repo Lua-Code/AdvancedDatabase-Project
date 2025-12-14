@@ -24,7 +24,17 @@ namespace Booking_app
             InitializeComponent();
 
             authService = new AuthService();
+            btnDelete.Click += BtnDelete_Click;
+            btnEdit.Click += BtnEdit_Click;
             LoadUserData();
+            if (Session.IsStaff)
+            {
+                lblStatus.Text = "Role:";
+                lblJoinDate.Visible = false;
+                txtJoinDate.Visible = false;
+                lblLevel.Visible = false;
+                txtLevel.Visible = false;
+            }
         }
 
         private void LoadUserData()

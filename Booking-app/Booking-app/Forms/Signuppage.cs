@@ -17,7 +17,7 @@ namespace Booking_app
             _authService = new AuthService();
 
             signUpButton.Click += SignUpButton_Click;
-
+            linkLogin.LinkClicked += LinkLogin_LinkClicked;
         }
 
 

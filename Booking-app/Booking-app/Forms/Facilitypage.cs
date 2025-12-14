@@ -35,7 +35,13 @@ namespace Booking_app
             bookButton.Click += reserve_Click;
             backButtn.Click += backButtn_Click;
 
-            if(Session.IsStaff) { bookButton.Visible = false; }
+            if(Session.IsStaff) { 
+                bookButton.Visible = false;
+                listBox1.Enabled = false;          
+                datelabel.Text = "Available slots";
+                priceLabel.Top = capacityLabel.Bottom + 20; 
+                priceLabel.Left = locationLabel.Left;
+            }
 
         }
 
@@ -135,6 +141,12 @@ namespace Booking_app
 
         private void reserve_Click(object sender, EventArgs e)
         {
+
+            if (dateTimePicker1.Value.Date < DateTime.Today)
+            {
+                MessageBox.Show("You cannot book a facility in the past.");
+                return;
+            }
 
             var hourlyRate = facilityService.GetPriceByMembershipLevel(Session.GetUserId, FacilityId);
             decimal totalAmount = hourlyRate * selectedSlots.Count;
