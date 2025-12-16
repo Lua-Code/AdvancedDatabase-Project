@@ -28,30 +28,28 @@ namespace Booking_app
             string name = txtName.Text.Trim();
             string type = txtType.Text.Trim();
             string location = txtLocation.Text.Trim();
-            string capacity = txtCapacity.Text.Trim();
-            int capacityInt = Convert.ToInt32(capacity);
-            string hourlyRate = txtHourlyRate.Text.Trim();
-            decimal hourlyRateDecimal = Convert.ToDecimal(hourlyRate);
+            string capacityStr = txtCapacity.Text.Trim();
+            string hourlyRateStr = txtHourlyRate.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(type) || string.IsNullOrWhiteSpace(location) || string.IsNullOrWhiteSpace(capacity) || string.IsNullOrWhiteSpace(hourlyRate))
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(type) ||
+                string.IsNullOrWhiteSpace(location) || string.IsNullOrWhiteSpace(capacityStr) ||
+                string.IsNullOrWhiteSpace(hourlyRateStr))
             {
-                MessageBox.Show("Please Fill in all the Fields.");
+                MessageBox.Show("Please fill in all the fields.");
                 return;
             }
 
-            if (!Regex.IsMatch(capacity, @"^\d+$")) 
+            if (!int.TryParse(capacityStr, out int capacityInt) || capacityInt <= 0)
             {
-                MessageBox.Show("Please enter a valid number.");
+                MessageBox.Show("Please enter a valid positive number for capacity.");
                 return;
             }
 
-
-            if (!Regex.IsMatch(hourlyRate, @"^(0*[1-9]\d*(\.\d+)?|0*\d*\.\d*[1-9]\d*)$"))
+            if (!decimal.TryParse(hourlyRateStr, out decimal hourlyRateDecimal) || hourlyRateDecimal <= 0)
             {
-                MessageBox.Show("Please enter a valid number.");
+                MessageBox.Show("Please enter a valid positive number for hourly rate.");
                 return;
             }
-
 
             try
             {
@@ -62,26 +60,28 @@ namespace Booking_app
                     type = type,
                     location = location,
                     availability = "Available",
-                    capacity = capacityInt, 
+                    capacity = capacityInt,
                     hourlyRate = hourlyRateDecimal
-
                 };
+
                 bool facilityAdded = facilityService.AddFacility(newFacility);
                 if (facilityAdded)
                 {
                     FacilityUpdated?.Invoke(this, EventArgs.Empty);
-                    MessageBox.Show("Facility Added Successfully!");
+                    MessageBox.Show("Facility added successfully!");
                     this.Close();
                 }
-                else {
-                    throw new Exception("A facility with the same name, location, and type already exists.");
+                else
+                {
+                    MessageBox.Show("A facility with the same name, location, and type already exists.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error Creating Facility: {ex.Message}");
+                MessageBox.Show($"Error creating facility: {ex.Message}");
             }
         }
+
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
