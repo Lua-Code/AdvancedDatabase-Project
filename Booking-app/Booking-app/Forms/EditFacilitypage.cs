@@ -44,26 +44,26 @@ namespace Booking_app
             string type = txtType.Text.Trim().ToLower();
             string location = txtLocation.Text.Trim();
             string availability = txtAvailability.Text.Trim();
-            string capacity = txtCapacity.Text.Trim();
-            int capacityInt = Convert.ToInt32(txtCapacity.Text.Trim());
-            string hourlyRate = txtHourlyRate.Text.Trim();
-            decimal hourlyRateDecimal = Convert.ToDecimal(txtHourlyRate.Text.Trim());
+            string capacityStr = txtCapacity.Text.Trim();
+            string hourlyRateStr = txtHourlyRate.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(type) || string.IsNullOrWhiteSpace(location) || string.IsNullOrWhiteSpace(availability) || string.IsNullOrWhiteSpace(capacity) || string.IsNullOrWhiteSpace(hourlyRate))
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(type) ||
+                string.IsNullOrWhiteSpace(location) || string.IsNullOrWhiteSpace(availability) ||
+                string.IsNullOrWhiteSpace(capacityStr) || string.IsNullOrWhiteSpace(hourlyRateStr))
             {
-                MessageBox.Show("Please Fill in all the Fields. ");
+                MessageBox.Show("Please fill in all the fields.");
                 return;
             }
 
-            if (!Regex.IsMatch(capacity, @"^\d+$"))
+            if (!int.TryParse(capacityStr, out int capacityInt) || capacityInt <= 0)
             {
-                MessageBox.Show("Please enter a valid number.");
+                MessageBox.Show("Please enter a valid positive number for capacity.");
                 return;
             }
 
-            if (!Regex.IsMatch(hourlyRate, @"^(0*[1-9]\d*(\.\d+)?|0*\d*\.\d*[1-9]\d*)$"))
+            if (!decimal.TryParse(hourlyRateStr, out decimal hourlyRateDecimal) || hourlyRateDecimal <= 0)
             {
-                MessageBox.Show("Please enter a valid number.");
+                MessageBox.Show("Please enter a valid positive number for hourly rate.");
                 return;
             }
 
@@ -78,9 +78,8 @@ namespace Booking_app
                     availability = availability,
                     capacity = capacityInt,
                     hourlyRate = hourlyRateDecimal
-
                 };
-                
+
                 facilityService.UpdateFacility(updatedFacility);
                 FacilityUpdated?.Invoke(this, EventArgs.Empty);
 
@@ -88,9 +87,10 @@ namespace Booking_app
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error updating user: {ex.Message}");
+                MessageBox.Show($"Error updating facility: {ex.Message}");
             }
         }
+
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {

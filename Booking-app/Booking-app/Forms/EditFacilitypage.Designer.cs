@@ -117,7 +117,7 @@ namespace Booking_app
             this.txtName.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtName.Location = new System.Drawing.Point(219, 93);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(358, 50);
+            this.txtName.Size = new System.Drawing.Size(358, 29);
             this.txtName.TabIndex = 2;
             // 
             // lblType
@@ -137,7 +137,7 @@ namespace Booking_app
             this.txtType.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtType.Location = new System.Drawing.Point(219, 138);
             this.txtType.Name = "txtType";
-            this.txtType.Size = new System.Drawing.Size(358, 50);
+            this.txtType.Size = new System.Drawing.Size(358, 29);
             this.txtType.TabIndex = 4;
             // 
             // lblLocation
@@ -157,7 +157,7 @@ namespace Booking_app
             this.txtLocation.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtLocation.Location = new System.Drawing.Point(219, 183);
             this.txtLocation.Name = "txtLocation";
-            this.txtLocation.Size = new System.Drawing.Size(358, 50);
+            this.txtLocation.Size = new System.Drawing.Size(358, 29);
             this.txtLocation.TabIndex = 6;
             // 
             // lblAvailability
@@ -177,7 +177,7 @@ namespace Booking_app
             this.txtAvailability.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtAvailability.Location = new System.Drawing.Point(219, 228);
             this.txtAvailability.Name = "txtAvailability";
-            this.txtAvailability.Size = new System.Drawing.Size(358, 50);
+            this.txtAvailability.Size = new System.Drawing.Size(358, 29);
             this.txtAvailability.TabIndex = 8;
             // 
             // lblCapacity
@@ -197,7 +197,7 @@ namespace Booking_app
             this.txtCapacity.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtCapacity.Location = new System.Drawing.Point(219, 273);
             this.txtCapacity.Name = "txtCapacity";
-            this.txtCapacity.Size = new System.Drawing.Size(358, 50);
+            this.txtCapacity.Size = new System.Drawing.Size(358, 29);
             this.txtCapacity.TabIndex = 10;
             // 
             // lblJoinDate
@@ -217,7 +217,7 @@ namespace Booking_app
             this.txtHourlyRate.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtHourlyRate.Location = new System.Drawing.Point(219, 318);
             this.txtHourlyRate.Name = "txtHourlyRate";
-            this.txtHourlyRate.Size = new System.Drawing.Size(358, 50);
+            this.txtHourlyRate.Size = new System.Drawing.Size(358, 29);
             this.txtHourlyRate.TabIndex = 12;
             // 
             // btnSave
