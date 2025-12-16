@@ -190,17 +190,23 @@ namespace Booking_app
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
+            bool refunded = bookingService.RefundBookingsForFacility(FacilityId);
+            if (!refunded)
+            {
+                MessageBox.Show("Refund failed. Facility not deleted.");
+                return;
+            }
+
             Facility facility = facilityService.GetById(FacilityId);
-            facilityService.DeleteFacility(facility);
+            bool wasDeleted = facilityService.DeleteFacility(facility);
 
-            FacilityUpdated?.Invoke(this, EventArgs.Empty);
+            if (wasDeleted)
+                FacilityUpdated?.Invoke(this, EventArgs.Empty);
+
             this.Close();
-            Homepage homepage = new Homepage();
-            homepage.Show();
-
-
-
+            new Homepage().Show();
         }
+
 
 
         private void label1_Click(object sender, EventArgs e) { }

@@ -121,6 +121,15 @@ public class BookingService
         return result.MatchedCount > 0;
     }
 
+    public List<Booking> getBookingsByFacilityId(ObjectId facilityId)
+    {
+
+        var filterBuilder = Builders<Booking>.Filter;
+        var filter = filterBuilder.Eq(b => b.facility_id, facilityId);
+
+        return _bookingCollection.Find(filter).ToList();
+    }
+
 
     public List<Booking> getBookingsByFacilityIdAndDate(ObjectId facilityId, DateTime date)
     {
@@ -199,5 +208,21 @@ public class BookingService
             .Find(b => b.Id == bookingId)
             .FirstOrDefault();
     }
+
+    public bool RefundBookingsForFacility(ObjectId facilityId)
+    {
+        var filter = Builders<Booking>.Filter.Eq(b => b.facility_id, facilityId) &
+                     Builders<Booking>.Filter.Ne(b => b.Status, "Refunded");
+
+        var update = Builders<Booking>.Update
+            .Set(b => b.Status, "Refunded");
+
+        var result = _bookingCollection.UpdateMany(filter, update);
+
+        if (result.ModifiedCount == 0)
+            return false;
+        return true;
+    }
+
 
 }
